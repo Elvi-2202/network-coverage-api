@@ -1,8 +1,8 @@
 package models
 
-type Tower struct {
+type Tower struct { //
 	Operator string
-	Lat, Lon float64
+	X, Y float64
 	G2, G3, G4 bool
 }
 
