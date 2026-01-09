@@ -114,42 +114,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-    var apiRes Response
-		json.Unmarshal(body, &apiRes)
-
-		if len(apiRes.Features) > 0 {
-			// Coordonnées GPS de l'utilisateur
-			lon := apiRes.Features[0].Geometry.Coordinates[0]
-			lat := apiRes.Features[0].Geometry.Coordinates[1]
-
-			// Exemple de conversion en radian si besoin
-			latRad := utils.ToRadian(lat)
-			fmt.Printf("Latitude en Radians: %f\n", latRad)
-
-			// On simule une conversion Lambert simple pour l'exemple X/Y
-			// Ici on utilise les valeurs du CSV pour comparer
-			userX := 700000.0 // Valeur X fictive (Lambert)
-			userY := 6600000.0 // Valeur Y fictive (Lambert)
-
-			for i := 1; i < len(records); i++ {
-				line := records[i]
-				antenneX, _ := strconv.ParseFloat(line[1], 64)
-				antenneY, _ := strconv.ParseFloat(line[2], 64)
-
-				// Calcul des écarts
-				diffX := antenneX - userX
-				diffY := antenneY - userY
-
-				// Calcul de l'hypoténuse via ton utils
-				h := utils.DistancePythagore(diffX, diffY)
-
-				if h < 5000 { // Si h < 5km
-					fmt.Printf("OK: Antenne à %.2f m (Hypoténuse)\n", h)
-				}
-			}
-
-			c.JSON(200, gin.H{"status": "Terminé"})
-		}
+    
 		
 	})
 

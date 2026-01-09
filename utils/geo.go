@@ -8,8 +8,8 @@ import (
 func Distance(x, y float64) float64 {
 	return math.Sqrt(math.Pow(x, 2) + math.Pow(y, 2))
 }
-func ToRadian(degree float64) float64 {
-	return degree * (math.Pi / 180)
+func Radius(h, r float64) bool {
+	return h <= r
 }
 
 func LambertToGPS(x, y float64) (float64, float64) {
@@ -18,4 +18,4 @@ func LambertToGPS(x, y float64) (float64, float64) {
 	p.ToWGS84(lambertgo.Lambert93)
 
 	return p.Y, p.X
-}	
+}
